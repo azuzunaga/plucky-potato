@@ -36,6 +36,7 @@ class Event(models.Model):
             raise ValidationError('User already registered')
         Registration.objects.create(user=user, event=self)
         self.participant_count += 1
+        self.save()
         return 'User registered'
 
     def unregister(self, user=User.objects.get(pk=1)):
@@ -43,6 +44,7 @@ class Event(models.Model):
             raise ValidationError('No registered user found')
         Registration.objects.get(user=user, event=self).delete()
         self.participant_count -= 1
+        self.save()
         return 'User unregistered'
 
     def user_registered(self, user=User.objects.get(pk=1)):
