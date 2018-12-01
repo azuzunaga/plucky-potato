@@ -6,6 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 
 
@@ -30,22 +31,28 @@ class Event(models.Model):
         managed = False
         db_table = 'events'
 
-    def register(self, user):
+    def register(self, user=User.objects.get(pk=1)):
+        if Registration.objects.filter(user=user, event=self):
+            raise ValidationError('User already registered')
         Registration.objects.create(user=user, event=self)
         self.participant_count += 1
+        return 'User registered'
 
-    def unregister(self, user):
+    def unregister(self, user=User.objects.get(pk=1)):
+        if not Registration.objects.filter(user=user, event=self):
+            raise ValidationError('No registered user found')
         Registration.objects.get(user=user, event=self).delete()
         self.participant_count -= 1
+        return 'User unregistered'
 
-    def user_registered(self, user):
+    def user_registered(self, user=User.objects.get(pk=1)):
         return bool(self.registration_set.filter(user=user))
 
 
 class Location(models.Model):
     id = models.IntegerField(
         primary_key=True, null=False, unique=True, db_index=True)
-    event = models.ForeignKey('Event', on_delete=models.CASCADE)
+    event = models.OneToOneField('Event', on_delete=models.CASCADE)
     contact_phone = models.TextField()
     primary = models.BooleanField()
     contact_email = models.TextField()
