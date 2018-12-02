@@ -3,7 +3,7 @@
 class Home extends React.Component {
   render() {
     return (
-      <div>
+      <div className="home">
         <Nav />
         <Events />
       </div>
