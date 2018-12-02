@@ -16,6 +16,7 @@ class LocationsResource(ModelResource):
 class EventsResource(ModelResource):
     registered = fields.BooleanField()
     location = fields.ForeignKey(LocationsResource, 'location')
+    short_location = fields.CharField()
 
     class Meta:
         queryset = Event.objects.all()
@@ -24,6 +25,9 @@ class EventsResource(ModelResource):
 
     def dehydrate_registered(self, bundle):
         return bundle.obj.user_registered()
+
+    def dehydrate_short_location(self, bundle):
+        return f'{bundle.obj.location.city}, {bundle.obj.location.state}'
 
     def prepend_urls(self):
         return [
