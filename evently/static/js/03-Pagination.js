@@ -5,9 +5,9 @@ const Pagination = props => {
       <button onClick={() => props.fetchPage(previous)} disabled={!previous}>
         ← Prev
       </button>
-      <p>
+      <span>
         Page {page} of {pages}
-      </p>
+      </span>
       <button onClick={() => props.fetchPage(next)} disabled={!next}>
         Next →
       </button>
