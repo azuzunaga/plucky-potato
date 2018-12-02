@@ -12,7 +12,7 @@ class Event extends React.Component {
       description,
     } = this.props.event;
     return (
-      <div>
+      <div className="event">
         <h4>{name}</h4>
         <p>{description}</p>
         <section>
