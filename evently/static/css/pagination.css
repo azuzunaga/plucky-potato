@@ -1,0 +1,35 @@
+.pagination {
+  text-align: center;
+  display: inline-grid;
+  grid-template-columns: repeat(3, auto);
+  align-items: stretch;
+  justify-content: center;
+  align-content: center;
+  margin: 2rem 0;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.pagination span {
+  margin: 0 5px;
+}
+
+.pagination button {
+  border: 0;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.pagination button:disabled {
+  font-weight: normal;
+}
+
+.pagination button:disabled:hover {
+  cursor: not-allowed;
+}
+
+.pagination button:hover {
+  cursor: pointer;
+}

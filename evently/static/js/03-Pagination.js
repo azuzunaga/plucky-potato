@@ -1,7 +1,7 @@
 const Pagination = props => {
   const { previous, next, page, pages } = props.pageInfo;
   return (
-    <section className="pagination">
+    <div className="pagination">
       <button onClick={() => props.fetchPage(previous)} disabled={!previous}>
         ← Prev
       </button>
@@ -11,6 +11,6 @@ const Pagination = props => {
       <button onClick={() => props.fetchPage(next)} disabled={!next}>
         Next →
       </button>
-    </section>
+    </div>
   );
 };
