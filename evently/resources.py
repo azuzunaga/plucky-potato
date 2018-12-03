@@ -19,7 +19,7 @@ class EventsResource(ModelResource):
     short_location = fields.CharField()
 
     class Meta:
-        queryset = Event.objects.all()
+        queryset = Event.objects.all().order_by('start_date')
         resource_name = 'events'
         authorization = Authorization()
 
