@@ -45,7 +45,21 @@ class Events extends React.Component {
         'Content-Type': 'application/json; charset=utf-8',
       },
     })
-      .then(() => this.fetchPage(this.state.url))
+      .then(res => res.json())
+      .then(res => {
+        const events = [...this.state.events];
+        events.forEach((event, i) => {
+          if (event.id === res.id) {
+            this.setState(prevState => ({
+              events: [
+                ...prevState.events.slice(0, i),
+                res,
+                ...prevState.events.slice(i + 1),
+              ],
+            }));
+          }
+        });
+      })
       .catch(error => this.setState({ error }));
   };
 
