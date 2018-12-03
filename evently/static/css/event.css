@@ -1,8 +1,63 @@
 .event {
   background-color: white;
   padding: 0.5rem 1.5rem;
-  margin: 1.5rem 1.5rem 0 0;
-  border-radius: 3px;
+  border-radius: 10px;
   box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.05);
-  max-width: 60rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
 }
+
+.event header {
+  vertical-align: top;
+}
+
+.event h4,
+h5 {
+  margin: 5px 0;
+}
+
+.event hr {
+  margin: auto 0 0 0;
+}
+
+.event section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 15px;
+  vertical-align: bottom;
+}
+
+.event section * {
+  margin: 0 5px;
+}
+
+.event section strong {
+  margin-left: 0;
+}
+
+.event button {
+  border-radius: 10px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.05);
+}
+
+/* .event button:hover {
+  background: cornflowerblue;
+  color: white;
+  transition: background-color 200ms ease, color 200ms ease,
+    border-color 200ms ease;
+} */
+
+.event button.registered {
+  background: cornflowerblue;
+  color: white;
+}
+
+/* .event button:hover.registered {
+  background: white;
+  color: black;
+  transition: background-color 200ms ease, color 200ms ease,
+    border-color 200ms ease;
+} */
