@@ -37,7 +37,7 @@ class Event(models.Model):
         Registration.objects.create(user=user, event=self)
         self.participant_count += 1
         self.save()
-        return 'User registered'
+        return self
 
     def unregister(self, user=User.objects.get(pk=1)):
         if not Registration.objects.filter(user=user, event=self):
@@ -45,7 +45,7 @@ class Event(models.Model):
         Registration.objects.get(user=user, event=self).delete()
         self.participant_count -= 1
         self.save()
-        return 'User unregistered'
+        return self
 
     def user_registered(self, user=User.objects.get(pk=1)):
         return bool(self.registration_set.filter(user=user))
