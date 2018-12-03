@@ -36,12 +36,18 @@ class EventsResource(ModelResource):
                 self.wrap_view('register'), name="api_event_register"),
         ]
 
+    def serialize_res(self, obj, request):
+        res_bundle = self.build_bundle(obj=obj, request=request)
+        return self.full_dehydrate(res_bundle)
+
     def register(self, request, **kwargs):
         self.method_check(request, allowed=['post', 'delete'])
         request_bundle = self.build_bundle(request=request)
         event = self.cached_obj_get(
             bundle=request_bundle, **self.remove_api_resource_names(kwargs))
         if request.method == 'POST':
-            return self.create_response(request, event.register())
+            res = self.serialize_res(event.register(), request)
+            return self.create_response(request, res)
         elif request.method == 'DELETE':
-            return self.create_response(request, event.unregister())
+            res = self.serialize_res(event.unregister(), request)
+            return self.create_response(request, res)
