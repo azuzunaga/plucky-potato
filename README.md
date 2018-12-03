@@ -24,6 +24,18 @@ Every time:
 1. Run the server with `python3 ./manage.py runserver`.
 2. Navigate to `http://localhost:8000/` (default).
 
+### Working with React
+
+Note: The steps in this section can be ignored if the front-end won't be modified.
+
+To develop with React for this app, follow these steps:
+
+1. Run `npm install`.
+2. Run `npx babel --watch evently/static/src --out-file ./evently/static/js/compiled-react.js --presets react-app/prod`
+3. Refresh page to save changes.
+
+For more details on this, visit: https://reactjs.org/docs/add-react-to-a-website.html
+
 ## Features
 
 ### Backend
@@ -62,3 +74,7 @@ All API endpoints live under the URL `api/v1/`.
 
 - [] Add user auth. Right now all event registrations are being process as if from user 1.
   - _Suggested implementation_: This can be done either by taking advantage of Django's authentication system.
+
+### Testing
+
+Currently, there are no tests available for this app. Future testing should include unit testing on both the front and backend, as well as integration testing.
