@@ -26,7 +26,7 @@ class Events extends React.Component {
         this.setState({
           events: res.objects,
           page: parseInt(offset / limit) + 1,
-          pages: total_count % limit,
+          pages: Math.ceil(total_count / limit),
           next,
           previous,
           url,
@@ -57,11 +57,13 @@ class Events extends React.Component {
       pages: this.state.pages,
     };
     return (
-      <div>
+      <div className="center">
         <Pagination pageInfo={pageInfo} fetchPage={this.fetchPage} />
-        {this.state.events.map(event => (
-          <Event event={event} key={event.id} onClick={this.register} />
-        ))}
+        <div className="events">
+          {this.state.events.map(event => (
+            <Event event={event} key={event.id} onClick={this.register} />
+          ))}
+        </div>
         <Pagination pageInfo={pageInfo} fetchPage={this.fetchPage} />
       </div>
     );
