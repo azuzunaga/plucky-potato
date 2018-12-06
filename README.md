@@ -52,8 +52,8 @@ All API endpoints live under the URL `api/v1/`.
 
 - `events/`: Lists all events as well as meta information (offset, limit, etc.).
 - `locations/`: Lists all locations as well as meta information (offset, limit, etc.).
-- `events/:id/` or `locations/:id/`: Returns a single event matching the `:id`.
-- `events/:id/register/`: If this endpoint is hit with a `POST` request, the current user is registered to the event matching `:id`. If the endpoint is hit with a `DELETE` request, the user is unregisted from the event. An error is returned if the endpoint is hit with the same verb more than once.
+- `events/:id/` or `locations/:id/`: Returns a single event or location matching the `:id`.
+- `events/:id/register/`: If this endpoint is hit with a `POST` request, the current user is registered to the event matching `:id`. If the endpoint is hit with a `DELETE` request, the user is unregisted from the event. An error is returned if the endpoint is hit with the same verb more than once in a row.
 
 ### Frontend
 
@@ -64,15 +64,15 @@ All API endpoints live under the URL `api/v1/`.
 
 ### Frontend
 
-- [] Routing. The browser navigation bar should display the current page. This can be achieved via React-Router or similar.
-- [] Pagination: add links to each page to ease navigation of large event lists.
+- [ ] Routing. The browser navigation bar should display the current page. This can be achieved via React-Router or similar.
+- [ ] Pagination: add links to each page to ease navigation of large event lists.
   - _Suggested implementation_: Since the number of pages, number of results, and results per page are known, an array of length `pages` containing URL strings can be created by changing the offset per page. This array can then be mapped to a React component with an onClick handler that fetches the page and updates the Events component state.
-- [] Drop-down location info: add a drop down to the location, query db for more details on click.
+- [ ] Drop-down location info: add a drop down to the location, query db for more details on click.
   - _Suggested implementation_: Add an onClick handler to the location description that 1) fetches the location information from the API endpoint and 2) modifies the Event component state and makes visible an inline Location component via class manipulation.
 
 ### Backend
 
-- [] Add user auth. Right now all event registrations are being process as if from user 1.
+- [ ] Add user auth. Right now all event registrations are being process as if from user 1.
   - _Suggested implementation_: This can be done either by taking advantage of Django's authentication system.
 
 ### Testing
